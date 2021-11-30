@@ -18,6 +18,65 @@ const GlobalStyle = createGlobalStyle`
       height: auto;
       max-width: 100%;
     }
+
+    button {
+      background-color: #6b330e !important;
+      color: white !important;
+    }
+
+    h2 {
+      color: #6b330e !important;
+    }
+
+    svg {
+        fill: white !important;
+      }
+
+    div {
+      color #6b330e !important;
+    }
+
+    #pair {
+      color: white !important;
+    }
+
+    #open-settings-dialog-button {
+      svg {
+        fill: white !important;
+      }
+    }
+
+    #wallet-connect-metamask {
+      background-color: white !important
+    }
+
+    #wallet-connect-walletconnect {
+      background-color: white !important
+    }
+
+    button[id='wallet-connect-trust wallet'] {
+      background-color: white !important
+    }
+
+    button[id='wallet-connect-binance chain'] {
+      background-color: white !important
+    }
+
+    #wallet-connect-mathwallet {
+      background-color: white !important
+    }
+
+    #wallet-connect-tokenpocket {
+      background-color: white !important
+    }
+
+    #wallet-connect-safepal {
+      background-color: white !important
+    }
+
+    #wallet-connect-coin98 {
+      background-color: white !important
+    }
   }
 `
 
