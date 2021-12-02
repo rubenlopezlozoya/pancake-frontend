@@ -30,7 +30,7 @@ const CurrencyInputHeader: React.FC<Props> = ({ title, subtitle, setIsChartDispl
   return (
     <CurrencyInputContainer>
       <Flex width="100%" alignItems="flex-start" justifyContent="space-between">
-        {setIsChartDisplayed && (
+        {false && (
           <IconButton onClick={toggleChartDisplayed} variant="text" scale="sm">
             <ChartIcon width="24px" color="primary" />
           </IconButton>

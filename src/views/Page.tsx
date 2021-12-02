@@ -12,10 +12,9 @@ const StyledPage = styled.div<{ $removePadding: boolean }>`
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
   padding-bottom: 0;
   min-height: calc(100vh - 64px);
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
-
+  background: url('https://uploads-ssl.webflow.com/61844a7735c43a40f5ec2724/6192abeabe44f3054ea1adc2_Farm.jpg');
   ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
+    background-size: cover;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -39,9 +38,6 @@ const Page: React.FC<
       <StyledPage $removePadding={removePadding} {...props}>
         {children}
         <Flex flexGrow={1} />
-        <Box display={['block', null, null, hideFooterOnDesktop ? 'none' : 'block']} width="100%">
-          <Footer />
-        </Box>
       </StyledPage>
     </>
   )
