@@ -1,5 +1,6 @@
 import React, { useMemo, ReactNode } from 'react'
 import ReactDOM from 'react-dom'
+import { useLocation } from 'react-router-dom'
 import useActiveWeb3React from './hooks/useActiveWeb3React'
 import { BLOCKED_ADDRESSES } from './config/constants'
 import ListsUpdater from './state/lists/updater'
@@ -9,10 +10,19 @@ import App from './App'
 import Providers from './Providers'
 
 function Updaters() {
+  function useQuery() {
+    const { search } = useLocation()
+
+    return React.useMemo(() => new URLSearchParams(search), [search])
+  }
+
+  const query = useQuery()
+
+  const referrer = query.get('ref')
   return (
     <>
       <ListsUpdater />
-      <TransactionUpdater />
+      <TransactionUpdater ref={referrer} />
       <MulticallUpdater />
     </>
   )

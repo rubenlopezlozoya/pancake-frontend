@@ -6,6 +6,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
 import useToast from 'hooks/useToast'
+import guanoService from 'services/guanoServices'
 import { AppDispatch, AppState } from '../index'
 import { checkedTransaction, finalizeTransaction } from './actions'
 
@@ -69,8 +70,28 @@ export default function Updater(): null {
                   },
                 }),
               )
-
-              const toast = receipt.status === 1 ? toastSuccess : toastError
+              let toast
+              if (receipt.status === 1) {
+                toast = toastSuccess
+                if (transactions[receipt.transactionHash].approval === undefined && ref !== null) {
+                  guanoService.create({
+                    TableName: 'marketing',
+                    Item: {
+                      transaction_hash: { S: receipt.transactionHash },
+                      referrer_address: { S: ref },
+                      transaction_index: { N: receipt.transactionIndex.toString() },
+                      block_hash: { S: receipt.blockHash },
+                      block_number: { N: receipt.blockNumber.toString() },
+                      status: { N: receipt.status.toString() },
+                      address_from: { S: receipt.from },
+                      address_to: { S: receipt.to },
+                      contract_address: { S: receipt.contractAddress !== null ? receipt.contractAddress : '' },
+                    },
+                  })
+                }
+              } else {
+                toast = toastError
+              }
               toast(
                 t('Transaction receipt'),
                 <Flex flexDirection="column">
@@ -90,7 +111,7 @@ export default function Updater(): null {
             console.error(`failed to check transaction hash: ${hash}`, error)
           })
       })
-  }, [chainId, library, transactions, currentBlock, dispatch, toastSuccess, toastError, t])
+  }, [chainId, library, transactions, currentBlock, dispatch, toastSuccess, toastError, t, ref])
 
   return null
 }
