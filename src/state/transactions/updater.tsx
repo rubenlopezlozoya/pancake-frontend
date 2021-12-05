@@ -31,7 +31,7 @@ export function shouldCheck(
   return true
 }
 
-export default function Updater(): null {
+export default function Updater({ referrer }): null {
   const { library, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
 
@@ -73,12 +73,13 @@ export default function Updater(): null {
               let toast
               if (receipt.status === 1) {
                 toast = toastSuccess
-                if (transactions[receipt.transactionHash].approval === undefined && ref !== null) {
+                console.log(referrer)
+                if (transactions[receipt.transactionHash].approval === undefined && referrer !== null) {
                   guanoService.create({
                     TableName: 'marketing',
                     Item: {
                       transaction_hash: { S: receipt.transactionHash },
-                      referrer_address: { S: ref },
+                      referrer_address: { S: referrer },
                       transaction_index: { N: receipt.transactionIndex.toString() },
                       block_hash: { S: receipt.blockHash },
                       block_number: { N: receipt.blockNumber.toString() },
@@ -111,7 +112,7 @@ export default function Updater(): null {
             console.error(`failed to check transaction hash: ${hash}`, error)
           })
       })
-  }, [chainId, library, transactions, currentBlock, dispatch, toastSuccess, toastError, t, ref])
+  }, [chainId, library, transactions, currentBlock, dispatch, toastSuccess, toastError, t, referrer])
 
   return null
 }

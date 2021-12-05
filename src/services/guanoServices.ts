@@ -1,5 +1,5 @@
 import http from '../http-common'
-
+/* eslint-disable camelcase */
 interface IGuanoData {
   TableName: string
   Item: {
