@@ -109,11 +109,10 @@ export default function CurrencyInputPanel({
             ) : (
               <Text id="pair" bold>
                 {(currency && currency.symbol && currency.symbol.length > 20
-                  ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
-                      currency.symbol.length - 5,
-                      currency.symbol.length,
-                    )}`
-                  : currency?.symbol) || t('Select a currency')}
+                  ? `${currency.symbol.slice(0, 4)}...${currency.symbol
+                      .slice(currency.symbol.length - 5, currency.symbol.length)
+                      .toLocaleUpperCase()}`
+                  : currency?.symbol.toLocaleUpperCase()) || t('Select a currency')}
               </Text>
             )}
             {!disableCurrencySelect && <ChevronDownIcon />}

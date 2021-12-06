@@ -25,6 +25,8 @@ import AddressInputPanel from './components/AddressInputPanel'
 import { GreyCard } from '../../components/Card'
 import Column, { AutoColumn } from '../../components/Layout/Column'
 import ConfirmSwapModal from './components/ConfirmSwapModal'
+import SwapLeftContainer from './components/SwapLeftContainer/index'
+import RewardsBar from './components/RewardsBar/index'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow, RowBetween } from '../../components/Layout/Row'
 import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
@@ -69,6 +71,37 @@ const Label = styled(Text)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
 `
+
+const size = {
+  xs: '320px',
+  sm: '768px',
+  lg: '1200px',
+}
+
+const device = {
+  xs: `(min-width: ${size.xs})`,
+  sm: `(min-width: ${size.sm})`,
+  lg: `(min-width: ${size.lg})`,
+}
+
+const StyledFlex = styled(Flex)`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  border-radius: 25px;
+  justify-content: space-evenly;
+
+  @media only screen and ${device.xs} {
+    flex-direction: column;
+  }
+  @media only screen and ${device.sm} {
+    flex-direction: column;
+  }
+
+  @media only screen and ${device.lg} {
+    flex-direction: column;
+  }
+`
 function useQuery() {
   const { search } = useLocation()
 
@@ -76,7 +109,6 @@ function useQuery() {
 }
 
 function Updaters({ referrer }) {
-  console.log(referrer)
   return (
     <>
       <ListsUpdater />
@@ -360,8 +392,8 @@ export default function Swap({ history }: RouteComponentProps) {
     <>
       <Updaters referrer={referrer} />
       <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
-        <Flex width="100%" justifyContent="center" position="relative">
-          {false && (
+        <StyledFlex width="100%" justifyContent="center" position="relative">
+          {/* {false && (
             <PriceChartContainer
               inputCurrencyId={inputCurrencyId}
               inputCurrency={currencies[Field.INPUT]}
@@ -372,8 +404,8 @@ export default function Swap({ history }: RouteComponentProps) {
               isChartDisplayed={isChartDisplayed}
               currentSwapPrice={singleTokenPrice}
             />
-          )}
-          <BottomDrawer
+          )} */}
+          {/* <BottomDrawer
             content={
               <PriceChartContainer
                 inputCurrencyId={inputCurrencyId}
@@ -389,7 +421,8 @@ export default function Swap({ history }: RouteComponentProps) {
             }
             isOpen={isChartDisplayed}
             setIsOpen={setIsChartDisplayed}
-          />
+          /> */}
+          <SwapLeftContainer />
           <Flex flexDirection="column">
             <StyledSwapContainer $isChartExpanded={isChartExpanded}>
               <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'} mr={isChartExpanded ? '0' : '0'}>
@@ -604,7 +637,8 @@ export default function Swap({ history }: RouteComponentProps) {
               </Box>
             )}
           </Flex>
-        </Flex>
+        </StyledFlex>
+        <RewardsBar />
       </Page>
     </>
   )

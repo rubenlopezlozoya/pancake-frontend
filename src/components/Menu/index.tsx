@@ -1,18 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useLocation } from 'react-router'
-import { Menu as UikitMenu } from '@pancakeswap/uikit'
-import { languageList } from 'config/localization/languages'
-import { useTranslation } from 'contexts/Localization'
-import PhishingWarningBanner from 'components/PhishingWarningBanner'
 import useTheme from 'hooks/useTheme'
 import { usePriceCakeBusd } from 'state/farms/hooks'
-import { usePhishingBannerManager } from 'state/user/hooks'
-import config from './config/config'
-import UserMenu from './UserMenu'
-import GlobalSettings from './GlobalSettings'
-import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
-import { footerLinks } from './config/footerConfig'
 
 const size = {
   xs: '320px',
@@ -37,6 +26,7 @@ const Header = styled.div`
   -webkit-box-align: center;
   align-items: center;
   max-width: 100%;
+  z-index: 2;
 
   @media only screen and ${device.xs} {
     justify-content: center;
