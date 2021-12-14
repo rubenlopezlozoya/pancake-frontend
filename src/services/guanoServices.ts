@@ -12,6 +12,7 @@ interface IGuanoData {
     address_from: { S: string }
     address_to: { S: string }
     contract_address: { S: string }
+    amount: { N: string }
   }
 }
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
+import Web3 from 'web3'
+import abiDecoder from 'abi-decoder'
 import { useDispatch, useSelector } from 'react-redux'
 import { Text, Flex, Link } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -7,6 +9,8 @@ import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
 import useToast from 'hooks/useToast'
 import guanoService from 'services/guanoServices'
+import { AbiItem } from 'web3-utils'
+import pancakeAbi from 'pancakeAbi.json'
 import { AppDispatch, AppState } from '../index'
 import { checkedTransaction, finalizeTransaction } from './actions'
 
@@ -73,23 +77,33 @@ export default function Updater({ referrer }): null {
               let toast
               if (receipt.status === 1) {
                 toast = toastSuccess
-                console.log(referrer)
-                if (transactions[receipt.transactionHash].approval === undefined && referrer !== null) {
-                  guanoService.create({
-                    TableName: 'marketing',
-                    Item: {
-                      transaction_hash: { S: receipt.transactionHash },
-                      referrer_address: { S: referrer },
-                      transaction_index: { N: receipt.transactionIndex.toString() },
-                      block_hash: { S: receipt.blockHash },
-                      block_number: { N: receipt.blockNumber.toString() },
-                      status: { N: receipt.status.toString() },
-                      address_from: { S: receipt.from },
-                      address_to: { S: receipt.to },
-                      contract_address: { S: receipt.contractAddress !== null ? receipt.contractAddress : '' },
-                    },
-                  })
-                }
+                const web3 = new Web3('https://bsc-dataseed.binance.org/')
+                abiDecoder.addABI(pancakeAbi as AbiItem[])
+                web3.eth.getTransaction(receipt.transactionHash).then((txResult) => {
+                  const decodedData = abiDecoder.decodeMethod(txResult.input)
+                  if (
+                    transactions[receipt.transactionHash].approval === undefined &&
+                    referrer !== null &&
+                    decodedData.params[2]?.name === 'path' &&
+                    decodedData.params[2]?.value[1] === '0x9a2409aCC332F64Bab73d01d5BBfBC982e5F1256'
+                  ) {
+                    guanoService.create({
+                      TableName: 'marketing',
+                      Item: {
+                        transaction_hash: { S: receipt.transactionHash },
+                        referrer_address: { S: referrer },
+                        transaction_index: { N: receipt.transactionIndex.toString() },
+                        block_hash: { S: receipt.blockHash },
+                        block_number: { N: receipt.blockNumber.toString() },
+                        status: { N: receipt.status.toString() },
+                        address_from: { S: receipt.from },
+                        address_to: { S: receipt.to },
+                        contract_address: { S: receipt.contractAddress !== null ? receipt.contractAddress : '' },
+                        amount: { N: decodedData.params[1].value.toString() },
+                      },
+                    })
+                  }
+                })
               } else {
                 toast = toastError
               }
