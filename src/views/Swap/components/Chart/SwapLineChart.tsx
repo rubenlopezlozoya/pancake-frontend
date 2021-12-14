@@ -34,8 +34,8 @@ const HoverUpdater = ({ locale, payload, setHoverValue, setHoverDate }) => {
 
 const getChartColors = ({ isChangePositive }) => {
   return isChangePositive
-    ? { gradient1: '#6B330E', gradient2: '#b5ada8', stroke: '#6B330E' }
-    : { gradient1: '#6B330E', gradient2: '#b5ada8', stroke: '#6B330E' }
+    ? { gradient1: '#212332', gradient2: '#b5ada8', stroke: '#212332' }
+    : { gradient1: '#212332', gradient2: '#b5ada8', stroke: '#212332' }
 }
 
 const dateFormattingByTimewindow: Record<PairDataTimeWindowEnum, Intl.DateTimeFormatOptions> = {

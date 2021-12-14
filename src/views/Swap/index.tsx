@@ -99,7 +99,7 @@ const StyledFlex = styled(Flex)`
   }
 
   @media only screen and ${device.lg} {
-    flex-direction: column;
+    flex-direction: row;
   }
 `
 function useQuery() {

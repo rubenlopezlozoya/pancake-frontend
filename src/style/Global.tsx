@@ -20,12 +20,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
-      background-color: #6b330e !important;
+      background-color: #212332 !important;
       color: white !important;
     }
 
     h2 {
-      color: #6b330e !important;
+      color: #212332 !important;
     }
 
     svg {
@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
       }
 
     div {
-      color #6b330e !important;
+      color #212332 !important;
     }
 
     #pair {

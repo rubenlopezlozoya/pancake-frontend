@@ -28,7 +28,7 @@ const ParentContainer = styled.div`
 `
 
 const RewardBar = styled.div`
-  background-color: #ffffff;
+  background-color: #212332;
   display: flex;
   border-radius: 16px;
   box-shadow: 0px 0px 15px -5px #fff;
@@ -46,6 +46,28 @@ const RewardBar = styled.div`
     margin-top: 0px;
   }
 `
+
+const FirstRewardCell = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and ${device.xs} {
+    border-bottom: 1px solid #e2e2e2;
+    padding: 20px 20px;
+    margin: 0px 20px;
+  }
+  @media only screen and ${device.sm} {
+    border-bottom: 1px solid #e2e2e2;
+    padding: 20px 20px;
+    margin: 0px 20px;
+  }
+  @media only screen and ${device.lg} {
+    border-bottom: 0px;
+    margin: 20px 0px;
+    padding: 0px 40px;
+  }
+`
+
 const RewardCell = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,10 +93,12 @@ const RewardCell = styled.div`
 const RewardCellHeader = styled.span`
   margin-bottom: 20px;
   font-weight: bold;
+  color: #fff !important;
 `
 
 const RewardCellContents = styled.span`
   font-size: 30px;
+  color: #fff !important;
 
   @media only screen and ${device.xs} {
     margin-bottom: 10px;
@@ -98,27 +122,27 @@ const RewardsBar = () => {
 
   return (
     <ParentContainer>
-      {!account ? (
+      {account ? (
         <RewardBar>
-          <RewardCell>
+          <FirstRewardCell>
             <RewardCellHeader>Total referred purchases</RewardCellHeader>
             <RewardCellContents>17</RewardCellContents>
-          </RewardCell>
+          </FirstRewardCell>
           <RewardCell>
             <RewardCellHeader>Total claimed rewards</RewardCellHeader>
-            <RewardCellContents>1,200,000 GUANO</RewardCellContents>
+            <RewardCellContents>1,200,000 $MSF</RewardCellContents>
           </RewardCell>
           <RewardCell>
             <RewardCellHeader>Total unclaimed rewards</RewardCellHeader>
-            <RewardCellContents>500,000 GUANO</RewardCellContents>
+            <RewardCellContents>500,000 $MSF</RewardCellContents>
           </RewardCell>
           <RewardCell>
             <RewardCellHeader>Total rewards</RewardCellHeader>
-            <RewardCellContents>1,700,000 GUANO</RewardCellContents>
+            <RewardCellContents>1,700,000 $MSF</RewardCellContents>
           </RewardCell>
           <RewardCell>
             <RewardCellHeader>Next Reward Distribution</RewardCellHeader>
-            <RewardCellContents>24hr 30min 16sec</RewardCellContents>
+            <RewardCellContents>14hr 30min</RewardCellContents>
           </RewardCell>
         </RewardBar>
       ) : (

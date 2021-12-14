@@ -17,7 +17,6 @@ const device = {
 const ParentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   @media only screen and ${device.xs} {
     margin-bottom: 10px;
@@ -27,20 +26,26 @@ const ParentContainer = styled.div`
   }
 `
 const SectionHeader = styled.h2`
-  color: #6b330e;
-  font-family: Hantu Kom Kom;
+  color: #fff !important;
   font-size: 80px;
   text-shadow: 0 0 6px #fff;
-  text-align: center;
+  @media only screen and ${device.xs} {
+    text-align: center;
+  }
+  @media only screen and ${device.sm} {
+    text-align: center;
+  }
+  @media only screen and ${device.lg} {
+    text-align: left;
+  }
 `
 
 const SectionCTA = styled.h3`
   font-family: 'Varela Round', sans-serif;
-  color: #503c23;
+  color: #fff;
   font-size: 30px;
   line-height: 1.34;
   font-weight: 400;
-  text-shadow: 0 0 6px #fff;
   mix-blend-mode: normal;
   margin: 40px 0px;
 
@@ -85,7 +90,7 @@ const StyledButton = styled.button`
   transition: background-color 0.2s, opacity 0.2s;
   height: 48px;
   padding: 0 35px;
-  background-color: #1fc7d4;
+  background-color: #212332 !important;
   color: white;
 
   @media only screen and ${device.xs} {
@@ -124,7 +129,7 @@ const AddressText = styled.p`
   word-break: break-all;
   background-color: #ffffff;
   box-shadow: 0px 0px 15px -5px #fff;
-
+  color: #212332;
   @media only screen and ${device.xs} {
     margin-bottom: 10px;
   }
@@ -150,9 +155,9 @@ const SwapLeftContainer = (props) => {
 
   return (
     <ParentContainer>
-      <SectionHeader>GUANO SWAP</SectionHeader>
+      <SectionHeader>MSF SWAP</SectionHeader>
       <SectionCTA>
-        <b>Earn rewards</b> with every <b>$GUANO</b> purchase made in <b>Guano Swap</b> with your referral link!
+        <b>Earn rewards</b> with every <b>$MSF</b> purchase made in <b>MSF Swap</b> with your referral link!
       </SectionCTA>
       <AddressBox>
         <AddressText>{account || 'Connect your wallet to get a link'}</AddressText>

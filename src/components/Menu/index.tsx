@@ -16,26 +16,26 @@ const device = {
 }
 
 const Header = styled.div`
-  background-color: white;
+  background-color: #0f1017;
   display: flex;
   flex-direction: row;
   position: sticky;
   top: 0px;
   padding: 20px;
   justify-content: space-between;
-  -webkit-box-align: center;
-  align-items: center;
   max-width: 100%;
   z-index: 2;
 
   @media only screen and ${device.xs} {
-    justify-content: center;
+    flex-direction: column;
   }
   @media only screen and ${device.sm} {
     display: flex;
+    flex-direction: column;
   }
   @media only screen and ${device.lg} {
     display: flex;
+    flex-direction: row;
   }
 `
 
@@ -44,9 +44,8 @@ const Logo = styled.img`
 `
 
 const BrandName = styled.h2`
-  color: #6b330e;
+  color: #fff !important;
   margin-left: 20px;
-  font-family: Hantu Kom Kom;
   font-size: 35px;
 `
 
@@ -56,6 +55,16 @@ const BrandContainer = styled.div`
   align-items: center;
 `
 
+const LinkContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+const MenuLink = styled.div`
+  margin: 20px;
+  color: #fff !important;
+  font-weight: bold;
+`
+
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
   const cakePriceUsd = usePriceCakeBusd()
@@ -63,12 +72,14 @@ const Menu = (props) => {
   return (
     <Header>
       <BrandContainer>
-        <Logo
-          alt="guano-logo"
-          src="https://uploads-ssl.webflow.com/61844a7735c43a40f5ec2724/61a0093fbf6516d32927333f_logo%20guano.png"
-        />
-        <BrandName>GUANO</BrandName>
+        <Logo alt="coin-logo" src="https://minishibafloki.com/wp-content/uploads/minishibafloki-logo.png" />
+        <BrandName>Mini Shiba Floki</BrandName>
       </BrandContainer>
+      <LinkContainer>
+        <MenuLink>CHART</MenuLink>
+        <MenuLink>WHITEPAPER</MenuLink>
+        <MenuLink>TELEGRAM</MenuLink>
+      </LinkContainer>
     </Header>
   )
 }

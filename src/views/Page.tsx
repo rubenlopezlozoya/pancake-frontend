@@ -12,7 +12,7 @@ const StyledPage = styled.div<{ $removePadding: boolean }>`
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
   padding-bottom: 0;
   min-height: calc(100vh - 64px);
-  background: url('https://uploads-ssl.webflow.com/61844a7735c43a40f5ec2724/6192abeabe44f3054ea1adc2_Farm.jpg');
+  background: url('https://i0.wp.com/wallpapercave.com/wp/wp2757874.gif');
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: cover;
   }

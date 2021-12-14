@@ -18,14 +18,7 @@
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
     },
-    {
-      "name": "GUANO Token",
-      "symbol": "GUANO",
-      "address": "0xb67192b205317d8d890c70ac22a5cc3f56d26d21",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://uploads-ssl.webflow.com/61844a7735c43a40f5ec2724/61a0093fbf6516d32927333f_logo%20guano.png"
-    },
+
     {
       "name": "BUSD Token",
       "symbol": "BUSD",
